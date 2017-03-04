@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="koa" type="javaScript">
+    <CLASSES />
+    <DOCUMENTATION>
+      <root url="https://github.com/koajs/koa/blob/master/docs/api/index.md" />
+    </DOCUMENTATION>
+    <SOURCES />
+  </library>
+</component>
