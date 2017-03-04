@@ -1,4 +1,4 @@
-const db = require('./db/sequelizeDB');
+const db = require('././sequelizeDB');
 
 let Pet = db.defineModel('pet', {
     id: {

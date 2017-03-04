@@ -1,11 +1,11 @@
-const Sequelize = require('sequelize');
-const config = require('../../config/config-default');
+const Sequelize = require('sequelize'),
+      config = require('../../configurations/dbConfig-default');
 
 console.log('init sequelize...');
 let sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
     dialect: 'mysql',
-    pool: {
+    pool: {             //连接池配置
         max: 5,
         min: 0,
         idle: 30000
@@ -14,7 +14,7 @@ let sequelize = new Sequelize(config.database, config.username, config.password,
 
 const ID_TYPE = Sequelize.STRING(50);
 
-function defineModel(name, attributes) {
+function defineModel(name, attributes) {  //统一限定module格式
     let attrs = {};
     for (let key in attributes) {
         let value = attributes[key];

@@ -1,6 +1,6 @@
-const nunjucks = require('nunjucks'),
-        rootPath=require('path')
-    ;
+const nunjucks = require('nunjucks'),//模版引擎
+    Path = require('path'),
+    rootPath = require('../config').rootPath;
 function createEnv(path, opts) {
     let autoescape = opts.autoescape && true,
         noCache = opts.noCache || false,
@@ -21,14 +21,15 @@ function createEnv(path, opts) {
     }
     return env;
 }
+
 function templating(path, opts) {
     // 创建Nunjucks的env对象:
     let env = createEnv(path, opts);
     return async(ctx, next) => {
         // 给ctx绑定render函数:
         ctx.render = (view, model) => {
-            // 把render后的内容赋值给response.body:
-            ctx.response.body = env.render(rootPath.join(__dirname,view), Object.assign({}, ctx.state || {}, model || {}));
+            // 把render()渲染后的内容赋值给response.body:                      Object.assign方法是讲此处传入的三个对象的属性全部拷贝到一个对象中
+            ctx.response.body = env.render(Path.join(rootPath+'/views', view), Object.assign({}, ctx.state || {}, model || {}));
             // 设置Content-Type:
             ctx.response.type = 'text/html';
         };
@@ -36,4 +37,4 @@ function templating(path, opts) {
         await next();
     };
 }
-module.exports=templating;
+module.exports = templating;

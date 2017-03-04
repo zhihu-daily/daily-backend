@@ -1,4 +1,4 @@
-const db = require('./db/sequelizeDB');
+const db = require('././sequelizeDB');
 
 module.exports = db.defineModel('users', {
     email: {
