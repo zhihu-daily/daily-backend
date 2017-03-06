@@ -4,7 +4,8 @@
   "description": "Hello Koa 2 example with async",
   "main": "start.js",
   "scripts": {
-    "start": "node build/start.js"
+    "start": "forever start build/start.js",
+    "stop":"forever stop build/start.js"
   },
   "keywords": [
     "koa",
@@ -24,8 +25,9 @@
     "mz": "2.4.0"
   },
   "devDependencies": {
+    "forever": "^0.15.3",
     "koa-router": "^7.0.0",
-    "sequelize": "3.24.1",
-    "mysql": "2.11.1"
+    "mysql": "2.11.1",
+    "sequelize": "3.24.1"
   }
 }
