@@ -17,4 +17,4 @@ app.use(templating('view', {                            //添加模版引擎 ren
 }));
 app.use(bodyParser);                                    //添加请求体解析
 app.use(routes);                                        //解析所有路由请求
-app.listen(9000);                                       //监听端口
+app.listen(9913);                                       //监听端口

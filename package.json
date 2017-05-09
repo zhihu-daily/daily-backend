@@ -5,7 +5,8 @@
   "main": "start.js",
   "scripts": {
     "start": "forever start build/start.js",
-    "stop":"forever stop build/start.js"
+    "stop":"forever stop build/start.js",
+    "dev":"node build/start.js"
   },
   "keywords": [
     "koa",

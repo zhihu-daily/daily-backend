@@ -1,11 +1,13 @@
-const db = require('././sequelizeDB');
+const db = require('./sequelizeDB/sequelizeDB');
 
-module.exports = db.defineModel('users', {
-    email: {
+
+module.exports = db.defineModel('user', {
+    id: {
         type: db.STRING(100),
-        unique: true
+        primaryKey: true
     },
-    passwd: db.STRING(100),
     name: db.STRING(100),
-    gender: db.BOOLEAN
+    jurisdiction: db.STRING(100),
+    account: db.STRING(100),
+    password: db.STRING(100)
 });

@@ -11,10 +11,13 @@ let js_files = files.filter((f)=>{
 
 for (let f of js_files) {
     let name = f.replace('.js','');
-    module.exports[name] = require(path.join(rootPath,'/models') + f); //读取相应的实体类 并作为属性输出
+    module.exports[name] = require(path.join(rootPath,'/models/') + f); //读取相应的实体类 并作为属性输出
     console.log(f.replace('.js','')); //打印所扫描到的实体类
 }
 
 module.exports.sync = () => {
     db.sync();
 };
+
+
+

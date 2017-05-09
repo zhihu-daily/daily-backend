@@ -5,8 +5,15 @@ console.log('init sequelize...');
 let sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
     dialect: 'mysql',
+    'define': {
+        // 字段以下划线（_）来分割（默认是驼峰命名风格）
+        'underscored': true
+    },
+    dialectOptions: {
+        charset: 'utf8mb4'
+    },
     pool: {             //连接池配置
-        max: 5,
+        max: 10,
         min: 0,
         idle: 30000
     }
@@ -32,18 +39,7 @@ function defineModel(name, attributes) {  //统一限定module格式
         type: ID_TYPE,
         primaryKey: true
     };
-    attrs.createdAt = {
-        type: Sequelize.BIGINT,
-        allowNull: false
-    };
-    attrs.updatedAt = {
-        type: Sequelize.BIGINT,
-        allowNull: false
-    };
-    attrs.version = {
-        type: Sequelize.BIGINT,
-        allowNull: false
-    };
+
     return sequelize.define(name, attrs, {
         tableName: name,
         timestamps: false,
@@ -51,15 +47,9 @@ function defineModel(name, attributes) {  //统一限定module格式
             beforeValidate: function (obj) {
                 let now = Date.now();
                 if (obj.isNewRecord) {
-                    if (!obj.id) {
-                        obj.id = generateId();
-                    }
-                    obj.createdAt = now;
-                    obj.updatedAt = now;
-                    obj.version = 0;
+
                 } else {
-                    obj.updatedAt = Date.now();
-                    obj.version++;
+
                 }
             }
         }
